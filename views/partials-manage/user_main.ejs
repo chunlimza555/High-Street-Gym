@@ -1,0 +1,44 @@
+<form action="/manage_user" method="get" class="search-form">
+    <select name="user_role" id="user-role">   
+        <option value="members" class="option-text">Members</option>
+        <option value="trainer" class="option-text">Trainer</option>
+        <option value="admin"class="option-text">Admin</option>
+    </select>
+    <input type="submit" value="Select" class = "option-text">
+    <div class = "search-button">
+        <a href="/manage_user_edit%>" >Create</a>
+    </div>
+</form>
+
+
+<br>
+
+<!-- body box -->
+<section class = "manage-user-list-header">
+    
+    <article class = "size-details-timetable">
+        <% for (const user of users) {%> 
+         <div class = "manage-user">
+            <div>
+                <p>Name: <%= user.firstname %> <%= user.lastname%></p>
+            </div>
+
+            
+            <div>
+                <p>Role: <%= user.role %></p>
+            </div>
+
+            <div>
+                <p>E-mail: <%= user.email %></p>
+            </div>
+
+            
+            <div class = "button-user">
+                <a href="/manage_user_edit?edit_id=<%= user.id %>" id="booking-button">Edit</a>
+            </div>
+        </div>
+        <% } %>
+
+    </article>
+
+</section>

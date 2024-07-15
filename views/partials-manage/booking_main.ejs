@@ -1,0 +1,30 @@
+<form action="/manage_booking" method="get" class="search-form-booking">
+    <input type="text" name="search_term" id="search-term" placeholder="Member Name" /> 
+    <input type="submit" value="Search" class="option-text">
+    <div class="button"><a href="/booking_create" id="booking-button">Create</a></div>
+</form>
+<br>
+
+<br>
+
+<!-- body box -->
+<section class="body-background-box">
+    <!-- Loop of class list -->
+    <% for (const booking of bookings) { %>  
+        <div class="manage-class-list">
+            <div><p>Member Name: <%= booking.user_firstname %> <%= booking.user_lastname %></p></div>
+            <div><p>Class Name: <%= booking.activity_name %></p></div>
+            <div><p>Date: <%= booking.class_date %></p></div>
+            <div><p>Time: <%= booking.class_time %></p></div>
+            <div><p>Trainer: <%= booking.trainer_firstname %> <%= booking.trainer_lastname %></p></div>
+            <div><p>Location:<%= booking.location_name %></p></div>
+            <div class="button-manage-booking">
+                <a href="/booking_edit?edit_id=<%=booking.booking_id %>" id="edit-button">Edit</a>
+            </div>
+         
+        </div>
+        <% } %>
+        <% if (bookings.length === 0) { %>
+            <p>No bookings found.</p>
+        <% } %>
+</section>

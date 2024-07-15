@@ -1,0 +1,52 @@
+<section class="background-user">
+    <h2>Booking Edit</h2>
+
+    <form action="/booking_edit" method="post" class="form-manage-booking">
+        <input type="hidden" name="booking_id" value="<%= editBooking.booking_id %>">
+        <input  type="hidden" name="user_id" value="<%= editBooking.user_id %>">
+        <input  type="hidden" name="class_id" value="<%= editBooking.class_id %>">
+        <input type="hidden" name="location_id" id="" value="<%= editBooking.location_id %>">
+        <input type="hidden" name="activity_id" id="" value="<%= editBooking.activity_id %>">
+        <input type="hidden" name="class_trainer_user_id" id="" value="<%= editBooking.class_trainer_user_id %>">
+        
+        
+        <label for="username" name="username_firstname" id="user_firstname">Member Name:</label>
+        <input type="text" name="username" class="form-manage-booking-box" id="username" value="<%= editBooking.user_firstname %> <%= editBooking.user_lastname %>" readonly>
+        
+        
+        <label for="activity_id">Class Name:</label>
+                <select name="activity_id" class="form-manage-booking-box" id="activity_id">
+                    <% for (const activity of allActivities) { %>
+                        <option value="<%= activity.id %>" <%= activity.id === editBooking.activity_id ? 'selected' : '' %>>
+                            <%= activity.name %>
+                        </option>
+                    <% } %>
+        </select>
+
+        <label for="class-date-show">Date:</label>
+        <input type="text" name="class_date_show" class="form-manage-booking-box" id="class-date-show" value="<%= new Date(editBooking.class_datetime).toLocaleDateString('en-AU', { day: 'numeric', month: 'short', year: 'numeric'}) %>" readonly>
+        
+        
+
+        <label for="class_trainer_user_id">Trainer Name:</label>
+                <select name="class_trainer_user_id" class="form-manage-booking-box" id="class_trainer_user_id">
+                    <% for (const trainer of allTrainers) { %>
+                        <option value="<%= trainer.id %>" <%= trainer.id === editBooking.class_trainer_user_id ? 'selected' : '' %>>
+                            <%= trainer.firstname %> <%= trainer.lastname %>
+                        </option>
+                    <% } %>
+        </select>
+
+        <label for="class_location">Location:</label>
+        <input type="text" name="location_name" class="form-manage-booking-box"id="class_location" value="<%= editBooking.location_name %>">
+
+        <div class="button-booking-edit">
+            <input type="submit" name="action" value="delete" class="button-delete"/>
+        </div>
+        
+
+        <div class="button-booking-edit">
+            <a href="/booking_create?user_id=<%= editBooking.user_id %>&booking_id=<%= editBooking.booking_id %>" class="button-delete">Edit class</a>
+        </div>
+    </form>
+</section>

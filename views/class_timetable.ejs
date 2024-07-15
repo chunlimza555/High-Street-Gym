@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include("partials/head.ejs") %>
+    <title>Class Timetable</title>
+</head>
+<body>
+    <!-- Header with nav -->
+    <%- include("partials/header.ejs") %>
+
+    <Main>
+        <!-- Class location select box -->
+        <h1>Class Timetable</h1>
+
+        <form action="/class_timetable" method="get" class="select-search-form">
+            <label for="class_location" className="option-text-location">Select Location </label><br/>
+            <select name="class_location" id="class_location">   
+                <option value="Brisbane City" class="option-text">Brisbane City</option>
+                <option value="Ashgrove" class="option-text">Ashgrove</option>
+                <option value="Chermside"class="option-text">Chermside</option>
+                <option value="Graceville"class="option-text">Graceville</option>
+                <option value="Westlake"class="option-text">Westlake</option>
+            </select>
+            <input type="submit" value="Select" class = option-text>
+        </form>
+        <br>
+
+        <!-- Timetable list -->
+        <section class = "body-background-box">
+            <article class = "size-details-timetable">
+            <% for (const classe of classes) {  %>  
+                <h2>Location : <%= classe.class_location %>
+                <% {break} } %></h2>
+
+            </article>
+            <article class = "size-details-timetable">
+
+                 <div class = "class-list-header">
+                    <div>
+                        <p>Date</p>
+                    </div>
+                    <div>
+                        <p>Time</p>
+                    </div>
+                    <div>
+                        <p>Class</p>
+                    </div>
+                    <div>
+                        <p>Trainer</p>
+                    </div>
+                    <div>
+                    </div>
+                </div>
+
+                <div class ="horizontal-line"></div>
+                <!-- Loop of class list -->
+                <% for (const classe of classes) {%>  
+                <div class = "class-list">
+                    <div>
+                        <p><%= classe.class_date.toLocaleDateString('en-AU', { day: 'numeric', month: "short", year: "numeric"})%></p>
+                    </div>
+                    <div>
+                        <p><%= classe.class_time.substring(0,5)%></p>
+                    </div>
+                    <div>
+                        <p><%= classe.class_name %></p>
+                    </div>
+                    <div>
+                        <p><%= classe.class_trianer_firstname %> <%= classe.class_trianer_lastname %></p>
+                    </div>
+                    <div class = "button">
+                        <a href="/class_booking?create_id=<%= classe.class_id %>">Booking</a>
+                    </div>
+                </div>
+                <% } %>
+
+            </article>
+
+        </section>
+    </Main>
+
+    <!-- footer -->
+    <%- include("partials/footer.ejs") %>
+</body>
+</html>

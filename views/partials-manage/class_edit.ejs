@@ -1,0 +1,153 @@
+<section class="body-background-box">
+    <h2 class="h2-text">Class Update</h2>
+    <form action="/class_edit_confirm" method="post" class="form-grid">
+
+        
+        <input type="hidden" name="class_id" value="<%= editClass.class_id %>">
+
+
+        
+        <label for="class-date">Date :</label>
+        <% if (editClass.class_id == "0") { %>
+            <input type="date" name="class_date" id="class-date" required>
+        <% } else { %>
+            <input type="date" name="class_date" id="class-date" value="<%= new Date(editClass.class_datetime).toISOString().slice(0, 10)%>" required>
+        <% } %>
+
+        
+        <label for="class-time">Time :</label>
+        <% if (editClass.class_id == "0") { %>
+            <input type="time" name="class_time" required>
+        <% } else { %>
+            <input type="time" name="class_time" value="<%= new Date(editClass.class_datetime).toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' }) %>" required>
+        <% } %>  
+
+
+        
+        
+        <label for="class-name">Class Name : </label>
+        <select name="activity_id" id="class-name" required> <!-- Add 'required' attribute here -->
+        <% for (const allActivity of allActivities) { %> 
+        <option value="<%= allActivity.id %>" <%= editClass.class_activity_id == allActivity.id ? "selected" : "" %>>    
+            <%= allActivity.name %>
+        <!-- <input type="text" name="activity_id" value="<%= allActivity.id %>"> -->
+        </option>
+        <% } %>
+        </select>
+        
+
+        <!-- <label for="class-name">Class Name : </label>
+        <select name="activity_id" id="class-name">
+            <% for (const allActivity of allActivities) { %>
+                <option value="<%= allActivity.activity_id %>" <%= editClass.activity_id == allActivity.activity_id ? "selected" : "" %>>
+                    <%= allActivity.name %>
+                </option>
+            <% } %>
+        </select> -->
+
+
+        
+        <label for="class-trainer">Trainer name : </label>
+        <select name="trainer_user_id" id="class-trainer">
+            <% for (const allTrainer of allTrainers) { %>
+                <option value="<%= allTrainer.id %>" <%= editClass.trainer_user_id == allTrainer.id ? "selected" : "" %>>
+                    <%= allTrainer.firstname %> <%= allTrainer.lastname %>
+                </option>
+            <% } %>
+        </select>
+
+
+        
+        <label for="class-location">Location:</label>
+        <select name="location_id" id="class-location">
+            <% for (const allLocation of allLocations) { %>
+                <option value="<%= allLocation.id %>" <%= editClass.activity_id == allLocation.id ? "selected" : "" %>>
+                    <%= allLocation.location_name %>
+                </option>
+            <% } %>
+        </select>
+
+        <div class="button-manage-class">
+            <input type="submit" name="action" value="delete" class="button"/>
+        </div>
+
+        <% if (editClass.class_id == 0  ) { %>
+            <div class="button-manage-class">
+                <input type="submit" name="action" value="create" class="button"/>
+            </div>  
+       
+        <% } else { %>
+            <div class="button-manage-class">
+                <input type="submit" name="action" value="update" class="button"/>
+            </div>
+        <% } %>
+    </form>
+</section>
+
+
+
+<!-- <section class = "body-background-box"> 
+    <h2>Class Update</h2>
+    
+
+    <form action="/class_edit_confirm" method="post" class="form-grid">
+        <input type="hidden" name="id" value="<%= editClass.id %>">
+    
+        <label for="class-date">Date :</label>
+        <% if (editClass.class_id == "0") { %>
+            <input type="date" name="class_datetime" id="class-date" required>
+        <% } else { %>
+            <input type="date" name="class_datetime" id="class-date" value="<%= editClass.class_datetime %>" required>
+        <% } %>
+        
+        
+        <label for="class-name">Class Name :</label>
+        <select name="activity_id" id="class-name"> 
+            <option <%= editClass.activity_id=="Body Pump" ? "selected" : "" %>value="Body Pump">Body Pump</option>
+            <option <%= editClass.activity_id=="Yoga" ? "selected" : "" %> value="Yoga" >Yoga</option>
+            <option <%= editClass.activity_id=="Boxing" ? "selected" : "" %>  value="Boxing">Boxing</option>
+            <option <%= editClass.activity_id=="Zumba" ? "selected" : "" %>  value="Zumba">Zumba</option>
+            <option <%= editClass.activity_id=="Pilates" ? "selected" : "" %> value="Pilates">Pilates</option>
+            <option <%= editClass.activity_id=="Abs" ? "selected" : "" %> value="Abs">Abs</option>
+            <option <%= editClass.activity_id=="HIIT" ? "selected" : "" %> value="HIIT">HIIT</option>
+            <option <%= editClass.activity_id=="Indoor Cycling" ? "selected" : "" %> value="Indoor Cycling">Indoor Cycling</option>
+        </select>
+        
+        <label for="trainer-name">Trainer Name:</label>
+        <select name="trainer_user_id" id="trainer-user-id">
+            <option <%= editClass.trainer_user_id=="Ken Nakarin" ? "selected" : "" %>value="Ken Nakarin">Ken Nakarin</option>
+            <option <%= editClass.trainer_user_id=="Chris Home" ? "selected" : "" %> value="Chris Home" >Chris Home</option>
+            
+        </select>
+
+
+
+        <label for="class-location">Location :</label>
+        <select name="location_id" id="class_location"> 
+            <option <%= editClass.location_id=="Brisbane City" ? "selected" : "" %>value="Brisbane City">Brisbane City</option>
+            <option <%= editClass.location_id=="Ashgrove" ? "selected" : "" %> value="Ashgrove" >Ashgrove</option>
+            <option <%= editClass.location_id=="Chermside" ? "selected" : "" %>  value="Chermside">Chermside</option>
+            <option <%= editClass.location_id=="Graceville" ? "selected" : "" %>  value="Graceville">Graceville</option>
+            <option <%= editClass.location_id=="Westlake" ? "selected" : "" %> value="Westlake">Westlake</option>
+        </select>
+
+       
+        <div class = "button">
+            <input type="submit" name="action" value="delete" class="button"/>
+            </div>
+    
+            <% if (editClass.id=="0") { %>
+            <div class = "button">
+            <input type="submit" name="action" value="create" class="button"/>
+            </div>  
+    
+            <% } else { %>
+            <div class = "button">
+            <input type="submit" name="action" value="update"class="button"/>
+            </div>
+            <% } %>
+    
+
+    </form> 
+   
+</section> -->

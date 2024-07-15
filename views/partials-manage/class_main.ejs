@@ -1,0 +1,15 @@
+<% if (classes && classes.length > 0) { %>
+    <% classes.forEach(classItem => { %>
+        <div class="class-item">
+            <p>Date: <%= classItem.class_datetime.toLocaleDateString('en-AU', { day: 'numeric', month: 'short', year: 'numeric' }) %></p>
+            <p>Activity: <%= classItem.activity_name %></p>
+            <p>Trainer: <%= classItem.user_firstname %> <%= classItem.user_lastname %></p>
+            <p>Location: <%= classItem.location_name %></p>
+            <div class="button">
+                <a href="/class_edit?edit_id=<%= classItem.class_id %>">Edit</a>
+            </div>
+        </div>
+    <% }); %>
+<% } else { %>
+    <p>No classes found.</p>
+<% } %>

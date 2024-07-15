@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include("partials/head.ejs") %>
+    <title>booking - High Street Gym</title>
+</head>
+<body>
+    <main>
+        <!-- Header with nav bar -->
+        <%- include("partials/header.ejs") %>    
+       
+        <section class="checkout-layout">
+            <% for (const booking of bookings) { %> 
+            <article class="booking-card">
+                <img src="image/blog-1.jpg" alt="Class image" />
+                <h2><%= booking.activity_name %></h2>
+                <span>Member: <%= user.firstname %><%= user.lastname %></span>
+                <span>Trainer: <%= booking.user_firstname %> <%= booking.user_lastname %></span>
+                <span>Duration: <%= booking.activity_duration %> minutes</span>
+                <p><%= booking.activity_description %></p>
+            </article>
+            <form action="/create_booking" method="post" class="form-grid">
+                <input type="hidden" name="booking_id" value="<%= booking.booking_id %>" />
+                <input type="hidden" name="booking_user_id" value="<%= user.userID %>" />
+                <input type="hidden" name="booking_class_id" value="<%= booking.class_id %>" />
+                <input type="datetime" name="booking_created_datetime" value="<%= booking.booking_created_datetime %>" />
+                
+                <input type="submit" value="Booking" class="link-button1"/>
+                <a href="/" class="link-button1">Back</a>
+                
+            </form>
+            <% } %> <!-- End of bookings loop -->
+        </section>    
+        
+        <!-- TODO Footer -->
+        <%- include("partials/footer.ejs") %>
+    </main>
+</body>
+</html>

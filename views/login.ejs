@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include("partials/head.ejs") %>
+    <title>Login Page - High Street Gym</title>
+</head>
+<body>
+    <main>
+        <!-- TODO header -->
+        <%- include("partials/header.ejs") %>
+        <!--  Main -->
+        <section class="login-form">
+            <form
+                action="/login"
+                method="post"
+                class="form-grid responsive-half margin-auto"
+            >
+                <label for="user-email">E-mail : </label>
+                <input type="email" name="email" id="user-email" required>
+                <label for="password">Password:</label>
+                <input type="password" name="password" id="user-password" required>
+                <a href="/register" class="link-button-login">Register</a>
+                <input type="submit" value="Login" class="link-button-login"/>
+            </form>
+        </section>
+
+
+
+        <!-- TODO Footer -->
+        <%- include("partials/footer.ejs") %>
+    </main>
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include("partials/head.ejs") %>
+    <title>Register</title>
+</head>
+<body>
+
+    <%- include("partials/header.ejs") %>
+        <!-- body box -->
+    <section class = "body-register-login">
+
+        <div class="logo-register-login">
+            <img src="\image\Logo-High-Street-Gym.png" alt="logo">
+        </div>
+
+        <form action="/register" method="post" class="form-grid-register-login">
+
+            <label for="user-firstname">First name : </label>
+            <input type="text" name="firstname" id="user-firstname" required>
+
+            <label for="user-lastname">Last name : </label>
+            <input type="text" name="lastname" id="user-lastname" required>
+
+            <label for="user-email">E-mail : </label>
+            <input type="email" name="email" id="user-email" required>
+
+            <label for="user-password">Password :</label>
+            <input type="password" name="password" id="user-password" required>
+
+            <label hidden for="user-role"></label>
+            <input hidden ="text" name="role" id="user-role" value="members"></label>
+
+            <label for="phone">Phone :</label>
+            <input type="tel" name="phone" id="user-phone" required>
+
+            <label for="address">Address :</label>
+            <input type="address" name="address" id="user-address" required>
+
+            <div id="register">
+            <div></div>
+            <div class = "home-button-container-register">
+            <input type="submit" name="action" value="Register" class="button"/>
+            </div>
+
+            <div></div>
+            <div>
+                <p>OR</p>
+            </div>
+
+            <div></div>
+            <div class="home-button-container-register">
+                <a href="/login" class="button">Login</a>
+            </div>
+            </div>
+
+        </form>
+
+
+    </section>
+
+
+    <%- include("partials/footer.ejs") %>
+</body>
+</html>

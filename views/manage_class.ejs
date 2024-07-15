@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include("partials/head.ejs") %>
+    <title>Manage Class - High Street Gym</title>
+</head>
+<body>
+    <main>
+        <%- include("partials/manage_nav.ejs") %>
+        <h1>Manage Class</h1>
+
+        <form action="/manage_class" method="get" class="search-form-class">
+            <label hidden for="search-term">Trainer Name</label>
+            <input type="text" name="search_term" id="search-term" placeholder="Trainer Name" /> 
+            <input type="submit" value="Search" class="option-text">
+        </form>
+
+        <br>
+
+        <form action="/manage_class" method="get" class="search-form-class-date">
+            <label hidden for="search-term-date-start"></label>
+            <input type="date" name="search_term_date_start" id="search-term-date-start" placeholder="Date start"/> 
+
+            <p> to </p>
+
+            <label hidden for="search-term-date-end"></label>
+            <input type="date" name="search_term_date_end" id="search-term-date-end" placeholder="Date end"/> 
+
+            <input type="submit" value="Search" class="option-text">
+            <div class="button-create-class">
+                <a href="/class_edit">Create</a>
+            </div>
+        </form>
+
+        <br>
+
+        <!-- body box -->
+        <section class="body-background-box-class">
+            <article class="size-details-timetable">
+                <div class="horizontal-line"></div>
+                <!-- Loop of class list -->
+                <% for (const classItem of classes) { %>  
+                    <div class="manage-class-list-six">
+                        <div>
+                            <p>Date: <%= classItem.class_datetime.toLocaleDateString('en-AU', { day: 'numeric', month: "short", year: "numeric"}) %></p>
+                        </div>
+                        <div>
+                            <p>Class Name: <%= classItem.activity_name %></p>
+                        </div>
+                        <div>
+                            <p>Duration: <%= classItem.activity_duration %> mins</p>
+                        </div>
+                        <div>
+                            <p>Trainer: <%= classItem.user_firstname %> <%= classItem.user_lastname %></p>
+                        </div>
+                        <div>
+                            <p>Location: <%= classItem.location_name %></p>
+                        </div>
+                        <div class="button-class">
+                            <a href="/class_edit?edit_id=<%= classItem.class_id %>">Edit</a>
+                        </div>
+                    </div>
+                <% } %>
+            </article>
+        </section>
+
+    </main>
+
+    <%- include("partials/footer.ejs") %>
+    
+</body>
+</html>

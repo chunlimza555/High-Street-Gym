@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include("partials/head.ejs") %>
+    <title>Booking - High Street Gym</title>
+</head>
+<body>
+    <main>
+        <!-- Header with nav bar -->
+        <%- include("partials/header.ejs") %>    
+
+        <!-- Class location select box -->
+        <h1>Your Booked Class</h1>
+        <% for (const booking of bookings) { %>  
+            <p>Member: <%= user.firstname %> <%= user.lastname %></p>
+            <% break; %>  <!-- Ensure to use break properly -->
+        <% } %>
+
+        <!-- Timetable list -->
+        <section class="body-background-box">
+            <article class="size-details-timetable">
+
+                <!-- Loop of class list -->
+                <% for (const booking of bookings) { %>  
+                <div class="manage-class-list">
+                    <div><p>Class: <%= booking.activity_name %></p></div>
+                    <div><p>Date: <%= new Date(booking.class_datetime).toLocaleDateString('en-AU', { day: 'numeric', month: 'short', year: 'numeric' }) %></p></div>
+                    <div><p>Trainer: <%= booking.trainer_firstname %> <%= booking.trainer_lastname %></p></div>
+                    <div><p>Location: <%= booking.location_name %></p></div>
+                    <div class="button-booking">
+                        <a href="/delete_booking_user?id=<%= booking.booking_id %>">Cancel</a>
+                    </div>
+                </div>
+                <% } %>
+            </article>
+        </section>
+
+        <!-- TODO Footer -->
+        <%- include("partials/footer.ejs") %>
+    </main>
+</body>
+</html>

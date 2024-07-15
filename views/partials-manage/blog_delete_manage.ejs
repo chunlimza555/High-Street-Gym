@@ -1,0 +1,70 @@
+<section class="body-background-box-blog">
+    <form action="/manage_blog_delete_confirm" method="post" class="create-blog">
+        <input type="hidden" name="post_id" value="<%= editBlog.post_id %>">
+        <input type="hidden" name="user_id" value="<%= editBlog.user_id %>">
+
+        <label for="blog-name" class="label-blog-create">Topic name :</label>
+        <input type="text" name="post_title" id="blog-name" value="<%= editBlog.post_title %>" readonly>
+
+        <label for="blog-date" class="label-blog-create">Date :</label>
+        <input type="text" name="post_datetime" id="blog-date" 
+               value="<%= new Date(editBlog.post_datetime).toLocaleDateString('en-AU', { day: 'numeric', month: 'short', year: 'numeric'}) %>" readonly>
+
+        <label for="blog-user" class="label-blog-create">Posted by :</label>
+        <input type="text" name="blog_user" id="blog-user" 
+               value="<%= editBlog.user_firstname %> <%= editBlog.user_lastname %>" readonly>
+
+        <label for="blog-detail" class="label-blog-create">Content :</label>
+        <textarea name="post_content" id="blog-detail" cols="30" rows="10" class="input-contact" readonly>
+            <%= editBlog.post_content %>
+        </textarea>
+
+        <div class="home-button-container-register">
+            <input type="submit" name="action" value="delete" class="button"/>
+        </div>
+    </form>
+</section> 
+
+
+
+
+
+     <!-- <section class = "body-background-box">
+
+        <form action="/manage_blog_delete_confirm" method="post" class="create-blog">
+            Waititng add user ID
+            
+            <input type="hidden" name="post_id" value="<%= editBlog.post_id %>">
+            <input type="hidden" name="user_id" value="<%= editBlog.user_id %>"> 
+
+
+            <label for="blog-name" class="abel-blog-create">Topic name :</label>
+            <input type="text" name="post_title"
+            id = "blog-name"
+            value="<%= editBlog.post_title %>"
+            readonly>
+
+            <label for="blog-date" className = "abel-blog-create">Date : </label>
+            <input type="datetime" name="post_datetime"
+            id="blog-date"
+            value="<%= editBlog.post_datetime.toLocaleDateString('en-AU', { day: 'numeric', month: "short", year: "numeric"}) %>"
+            readonly>
+
+            <label for="blog-user" className = "abel-blog-create">Posted by :</label>
+            <input type="text" name="blog_user"
+            id="blog-user"
+            value="<%= editBlog.user_firstname %> <%= editBlog.user_lastname %>"
+            readonly>
+
+            <label for="blog-detail" className = "abel-blog-create">Content : </label>
+            <textarea type ="text" name="post_content" id="blog-detail" cols="30" rows="10" className="input-contact" readonly>
+            <%= editBlog.post_content %>
+            </textarea>
+
+            <div></div>
+            <div class = "home-button-container-register">
+                <input type="submit" name="action" value="delete" class="button"/>
+            </div>
+        </form> 
+
+    </section> -->

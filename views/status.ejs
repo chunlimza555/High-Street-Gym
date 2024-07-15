@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include("partials/head.ejs") %>
+    <title>Class List - High Street Gym</title>
+</head>
+<body>
+    <main>
+        <!-- Header with nav bar -->
+        <%- include("partials/header.ejs") %>        
+        <h1>Status Page</h1>
+        <section>
+            <article class="Status-box">
+                <h2><%= status %></h2>
+                <% if (typeof message != "undefined") { %>
+                <p><%= message %></p>
+                <% } %>
+            </article>
+        </section>
+
+        <!-- TODO Footer -->
+        <%- include("partials/footer.ejs") %>
+    </main>
+</body>
+</html>

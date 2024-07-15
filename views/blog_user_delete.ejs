@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include("partials/head.ejs") %>
+    <title>Delete Blog</title>
+</head>
+<body>
+ 
+    <%- include("partials/header.ejs") %>
+    <main>
+        <h1>Your blog : delete</h1>
+        <%- include("partials/blog_nav.ejs") %>
+
+        <form action="/blog_user_delete_confirm" method="post" class="create-blog">
+            <input type="hidden" name="post_id" value="<%= editBlog.post_id %>">
+            <input type="hidden" name="post_user_id" value="<%= editBlog.user_id %>"> 
+        
+            <label for="post-title" class="label-blog-create">Topic name :</label>
+            <input type="text" name="post_title" id="post-title" value="<%= editBlog.post_title %>" readonly>
+        
+            <label for="post-datetime" class="label-blog-create">Date : </label>
+            <input type="text" name="post_datetime" id="post-datetime" value="<%= editBlog.post_datetime.toLocaleDateString('en-AU', { day: 'numeric', month: 'short', year: 'numeric'}) %>" readonly>
+        
+            <label for="blog-user" class="label-blog-create">Posted by :</label>
+            <input type="text" name="blog_user" id="blog-user" value="<%= editBlog.user_firstname %> <%= editBlog.user_lastname %>" readonly>
+        
+            <label for="blog-detail" class="label-blog-create">Content : </label>
+            <textarea name="post_content" id="post-content" cols="30" rows="10" class="input-contact" readonly><%= editBlog.post_content %></textarea>
+        
+            <div class="home-button-container-register">
+                <input type="submit" name="action" value="delete" class="button"/>
+            </div>
+        </form>
+   
+    </section>
+
+    </main>
+
+    <%- include("partials/footer.ejs") %>
+
+</body>
+</html>

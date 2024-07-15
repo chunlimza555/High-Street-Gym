@@ -1,0 +1,16 @@
+<% for (const blog of blogs) { %>  
+    <section class="body-background-box-noalign-blog">
+        <article id="blog-name">
+            <div>
+                <h2><%= blog.post_title %></h2>
+            </div>
+        </article>
+        <p class="blue-text">Date: <%= blog.post_datetime.toLocaleDateString('en-AU', { day: 'numeric', month: 'short', year: 'numeric' }) %></p>
+        <p class="blue-text">Post by: <%= blog.user_firstname %> <%= blog.user_lastname %></p>
+        <p><%= blog.post_content %></p>
+        <div class="button-container">
+            <a href="/blog_user_delete?id=<%= blog.post_id %>">Delete</a>
+        </div>
+    </section>
+    <br>
+<% } %>

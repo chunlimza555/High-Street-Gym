@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include("partials/head.ejs") %>
+    <title>Blog - High Street Gym</title>
+</head>
+<body>
+    <main>
+        <!-- Header with nav bar -->
+        <%- include("partials/header.ejs") %>  
+        <h1>Blog</h1>
+        <!-- Blog Nav -->
+        <%- include("partials/blog_nav.ejs") %>
+
+        <!-- TODO Blog Posts -->
+        <% for (const blog of blogs) {%>  
+            <section class="body-background-box-blog">
+                <article id="post_title">
+                    <div>
+                        <h2><%= blog.post_title %></h2>
+                    </div>
+                </article>
+                <div class="blog-border">
+                <p class="text">Date Time : <%= blog.datetime.toLocaleDateString('en-AU', { day: 'numeric', month: 'numeric', month: 'short', year: 'numeric'})%></p>
+                <p class="text">Member : <%= blog.user_firstname %> <%= blog.user_lastname %> </p>
+                <p><%= blog.content %></p>
+                </p>
+            </div>
+            </section>
+            <br>
+        <% } %>
+        
+        
+
+        <!-- TODO Footer -->
+        <%- include("partials/footer.ejs") %>
+    </main>
+</body>
+</html>

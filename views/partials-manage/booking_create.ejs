@@ -1,0 +1,54 @@
+
+
+
+
+    <h2>Admin Booking Create</h2>
+
+    <section class="background-user">
+        
+
+        <form action="/booking_create" method="post" class="form-manage-booking">
+            <% if (user_id == "0") { %>
+                <input type="hidden" name="booking_id">
+        
+                <label for="user-id">Member Name:</label>
+                <select name="user_id" id="user-id" required>
+                    <% for (const user of allUsers) { %>
+                    <option value="<%= user.user_id %>">
+                        <%= user.firstname %> <%= user.lastname %>
+                    </option>
+                    <% } %>
+                </select>
+            <% } else { %>
+                <input type="hidden" name="booking_id" value="<%=booking_id %>">
+                <input type="hidden" name="user_id" value="<%= user_id %>">
+        
+                <label for="user-name">Member Name:</label>
+                <input type="text" name="user_name" id="user-name" value="<%= allUsers.firstname %> <%= allUsers.lastname %>" readonly>
+            <% } %>
+        
+            <label for="class-id">Class:</label>
+            <select name="class_id" id="class-id" required>
+                <% for (const classItem of allClasses) { %>
+                    <span>Class: </span>
+                <option value="<%= classItem.class_id %>">
+                    <%= classItem.activity_name %> - <%= classItem.location_name %> <br>
+                    <%= new Date(classItem.class_datetime).toLocaleDateString('en-AU', { day: 'numeric', month: 'short', year: 'numeric' }) %> - 
+                    <%= new Date(classItem.class_datetime).toLocaleTimeString('en-AU', { hour: '2-digit', minute: '2-digit' }) %> <br>
+                    <%= classItem.trainer_firstname %> <%= classItem.trainer_lastname %>
+                    <!-- <input type="text" value="<%= classItem.class_id %> -->
+                </option>
+                <% } %>
+            </select>
+        
+            <% if (user_id == "0") { %>
+            <div class="button-update">
+                <input type="submit" name="action" value="create" class="button"/>
+            </div>  
+            <% } else { %>
+            <div class="button-update">
+                <input type="submit" name="action" value="update" class="button"/>
+            </div>
+            <% } %>
+        </form>
+    </section>

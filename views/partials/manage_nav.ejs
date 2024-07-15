@@ -1,0 +1,41 @@
+
+
+<header>
+	<nav class="navbar">
+		
+		<a href="/home" class="nav-branding"><img src="../Image/Logo-High-Street-Gym.png" alt="logo" /> </a>
+		<ul class="nav-menu">
+			<li class="nav-item">
+				<a href="/manage_booking" class="nav-link">Manage Bookings</a>
+			</li>
+			<li class="nav-item">
+				<a href="/manage_blog" class="nav-link">Manage Blogs</a>
+			</li>
+			<li class="nav-item">
+				<a href="/manage_user" class="nav-link">Manage User</a>
+			</li>
+			<li class="nav-item">
+				<a href="/manage_class" class="nav-link">Manage Class</a>
+			</li>
+			<li class="nav-item">
+				<a href="/home" class="nav-link">Log out</a>
+			</li>
+		</ul>
+		
+		<div class="hamburger" onclick="toggleMenu()">
+			<span class="bar"></span>
+			<span class="bar"></span>
+			<span class="bar"></span>
+		  </div>
+		</nav>
+	  </header>
+	  <script>
+		function toggleMenu() {
+			const menu = document.querySelector('.nav-menu');
+			const hamburger = document.querySelector('.hamburger');
+			menu.classList.toggle('active');
+			hamburger.classList.toggle('active');
+		}
+	</script>
+	<!-- Fixed navbar --> 
+	
